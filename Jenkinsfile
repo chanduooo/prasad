@@ -3,6 +3,12 @@ pipeline {
     parameters {
                  choice choices: ['apply', 'destroy'], name: 'action'
                 }
+   environment {
+        // Use the credentials ID from Jenkins credentials
+        AWS_ACCESS_KEY_ID = credentials('aws-credentials').accessKeyId
+        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials').secretAccessKey
+    }
+
 
     stages {
         stage("aws credentials") {
